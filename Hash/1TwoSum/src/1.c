@@ -23,39 +23,39 @@ int* twoSum(int* nums, int numsSize, int target)
 {
 	int i;
 	int complement, pos;
-  int* returnSize;
-  struct HashTable* HashT;
+    int* returnSize;
+    struct HashTable* HashT;
 
-  flag = 0;
-  returnSize = (int*)malloc(2 * sizeof(int));
-  HashT = (struct HashTable* )malloc(sizeof(struct HashTable));
-  HashT->Hsize = nextPrime(2*numsSize);
-  HashT->H = (struct HNode*)malloc(HashT->Hsize * sizeof(struct HNode));
+    flag = 0;
+    returnSize = (int*)malloc(2 * sizeof(int));
+    HashT = (struct HashTable* )malloc(sizeof(struct HashTable));
+    HashT->Hsize = nextPrime(2*numsSize);
+    HashT->H = (struct HNode*)malloc(HashT->Hsize * sizeof(struct HNode));
 
-  //init
-  for(i = 0;i < HashT->Hsize;i++)
-  {
-    HashT->H[i].info = empty;
-  }
-
-  for(i = 0;i < numsSize;i++)
-  {
-    complement = target - nums[i];
-    pos = find(HashT, complement, 1);
-    if(flag)
+    //init
+    for(i = 0;i < HashT->Hsize;i++)
     {
-    	returnSize[0] = pos;
-    	returnSize[1] = i;
-    	break;
+      HashT->H[i].info = empty;
     }
-    else
-    {
-    	pos = find(HashT, nums[i], 0);
-    	insert(HashT, nums[i], i, pos);
-    }
-  }
 
-  return returnSize;
+    for(i = 0;i < numsSize;i++)
+    {
+      complement = target - nums[i];
+      pos = find(HashT, complement, 1);
+      if(flag)
+      {
+    	  returnSize[0] = pos;
+    	  returnSize[1] = i;
+    	  break;
+      }
+      else
+      {
+    	  pos = find(HashT, nums[i], 0);
+    	  insert(HashT, nums[i], i, pos);
+      }
+    }
+
+    return returnSize;
 }
 
 int hash(struct HashTable* HashT, int key)
