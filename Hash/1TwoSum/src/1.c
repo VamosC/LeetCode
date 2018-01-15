@@ -52,10 +52,10 @@ int* twoSum(int* nums, int numsSize, int target)
       		{
     	  		pos = find(HashT, nums[i], 0);
     	  		insert(HashT, nums[i], i, pos);
-      	}
-    }
+      		}
+    	}
 
-    return returnSize;
+    	return returnSize;
 }
 
 int hash(struct HashTable* HashT, int key)
