@@ -16,6 +16,7 @@ int* preorderTraversal(struct TreeNode* root, int* returnSize)
 {
 	struct TreeNode* Stack[MAX];
 	struct TreeNode* p;
+	int* result;
 	int top;
 	int i;
 
@@ -25,17 +26,17 @@ int* preorderTraversal(struct TreeNode* root, int* returnSize)
 	if(root == NULL)
 		return NULL;
 
-	returnSize = (int*)malloc(MAX*sizeof(int));
+	result = (int*)malloc(sizeof(int)*MAX);
 	Stack[++top] = root;
 	while(top != -1)
 	{
 		p = Stack[top--];
-		a[i++] = p->val;
+		result[i++] = p->val;
 		if(p->right)
 			Stack[++top] = p->right;
 		if(p->left)
 			Stack[++top] = p->left;
 	}
-
-	return returnSize;
+	*returnSize = i;
+	return result;
 }
